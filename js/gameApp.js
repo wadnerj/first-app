@@ -17,7 +17,7 @@ gameApp.config(function($routeProvider) {
 			
 	.when('/', {
 
-	  templateUrl : '../first-app/tpls/splash.html',
+	  templateUrl : 'first-app/tpls/splash.html',
 
 	  controller  : 'splashController'
 			
@@ -28,7 +28,7 @@ gameApp.config(function($routeProvider) {
 			
 	.when('/home', {
 
-	  templateUrl : '../first-app/tpls/home.html',
+	  templateUrl : 'first-app/tpls/home.html',
 
 	  controller  : 'mainController'
 			
@@ -39,7 +39,7 @@ gameApp.config(function($routeProvider) {
 			
         .when('/stage', {
 
-	  templateUrl : '../first-app/tpls/stage.html',
+	  templateUrl : 'first-app/tpls/stage.html',
 
 	  controller  : 'stageController'
 
@@ -67,7 +67,7 @@ gameApp.controller('splashController', function($scope, $location, $timeout) {
 
 
 $scope.endSplash = function(){ 
- $location.path('/home'); // path not hash
+ $location.path('home'); // path not hash
  }; 
 
 $scope.fadeO= function(){
