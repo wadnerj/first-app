@@ -1,0 +1,252 @@
+html,body{
+height:100%;
+overflow-x:hidden;
+overflow-y:hidden;
+}
+
+.container {
+    height:100%;
+}
+
+.splash, .main-menu{
+    width:100%;
+    height:100%;
+    min-height:100%;
+    background-color:#000000;
+    color:#efefef;
+    position: absolute;
+}
+
+.splash-content, .main-menu-content{
+width: 290px;
+height: 350px;
+position: absolute;
+top: 19%;
+left: 43%;
+color: #fff;
+font-size: 18px;
+z-index: 1;
+background-color: #000000;
+text-align: center;
+}
+
+.splash-content > img{
+width:100%;
+max-width:100%;
+}
+
+.splash-title {
+font-size: 55px;
+font-style: italic;
+position:relative;
+top:0px;
+  -webkit-animation: splashTitle 2s; /* Chrome, Safari, Opera */
+    -webkit-animation-direction: alternate; /* Chrome, Safari, Opera */
+    animation: splashTitle 2s;
+    animation-direction: alternate;
+}
+
+/* Chrome, Safari, Opera */
+@-webkit-keyframes splashTitle {
+     0%   {top: -100px;}
+    100%  {top: 0px;}
+}
+
+
+.splash-sub-title {
+font-size: 20px;
+}
+
+.splash-audio, .main-menu-audio{
+z-index: 0;
+position:absolute;
+top: -15%;
+}
+
+.splash-content > img, .splash-sub-title {
+    margin-top: 25px;
+    font-size: 21px;
+    text-align: center;
+    animation: fadein 7s;
+    -moz-animation: fadein 7s; /* Firefox */
+    -webkit-animation: fadein 7s; /* Safari and Chrome */
+    -o-animation: fadein 7s; /* Opera */
+}
+@keyframes fadein {
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:1;
+    }
+}
+@-moz-keyframes fadein { /* Firefox */
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:1;
+    }
+}
+@-webkit-keyframes fadein { /* Safari and Chrome */
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:1;
+    }
+}
+@-o-keyframes fadein { /* Opera */
+    from {
+        opacity:0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.main-menu, .main-menu-content{
+     background-color: beige;
+     overflow: hidden;
+}
+
+.main-menu-content > img {
+width:50%;
+}
+
+
+@media only screen and (max-width: 325px){
+.splash-content, .main-menu-content{
+left: 10%;
+}
+}
+
+
+@media only screen and (min-width: 326px) and (max-width: 767px){
+.splash-content{
+left: 7%;
+}
+.main-menu-content{
+left: 18%;
+}
+
+}
+
+#main-menu-title{
+width: 100%!important;
+}
+
+
+@-webkit-keyframes animatedBackground{
+        from { background-position: 0 0; }
+        to { background-position: 0 100%; }
+}
+
+#animate-area{
+width:100%;
+height:100%;
+position:absolute;
+background-image: url(http://sandbox.yoyogames.com/extras/image/name/san2/921/425921/original/Space_Background_bigger.gif);
+background-position: 0px 0px;
+background-repeat: repeat-xy;
+animation: animatedBackground 3s linear infinite;
+-ms-animation: animatedBackground 3s linear infinite;
+-moz-animation: animatedBackground 3s linear infinite;
+-webkit-animation: animatedBackground 3s linear infinite;
+}
+
+
+@-webkit-keyframes play {
+   from { background-position:    0px; }
+     to { background-position: -500px; }
+}
+
+@-moz-keyframes play {
+   from { background-position:    0px; }
+     to { background-position: -500px; }
+}
+
+@-ms-keyframes play {
+   from { background-position:    0px; }
+     to { background-position: -500px; }
+}
+
+@-o-keyframes play {
+   from { background-position:    0px; }
+     to { background-position: -500px; }
+}
+
+@keyframes play {
+   from { background-position:    0px; }
+     to { background-position: -500px; }
+}
+
+#player{
+width:50px;
+height: 72px;
+background: url(http://s.cdpn.io/79/sprite-steps.png) 0 0;
+position: absolute;
+ -webkit-animation: play .8s steps(10) infinite;
+       -moz-animation: play .8s steps(10) infinite;
+        -ms-animation: play .8s steps(10) infinite;
+         -o-animation: play .8s steps(10) infinite;
+            animation: play .8s steps(10) infinite;
+}
+
+#player.main{
+bottom: 5%;
+left:48%;
+}
+
+.fall{
+position:absolute;
+background: url(http://www.processingjs.nihongoresources.com/test/PjsGameEngine/docs/tutorial/graphics/assorted/Regular-coin.gif)!important;
+-webkit-animation: falling .8s steps(10) infinite;
+-moz-animation: falling .8s steps(10) infinite;
+-ms-animation: falling .8s steps(10) infinite;
+-o-animation: falling .8s steps(10) infinite;
+animation: falling .8s steps(10) infinite;
+height:16px!important;
+width:10px!important;
+}
+
+@-webkit-keyframes falling{
+        from { background-position: 0 0; }
+        to { background-position: 0 100%; }
+}
+#score{
+        color:#ffffff;
+        font-weight:bold;
+        float:right;
+        /*right:5px;
+        top:1%;*/
+}
+
+.pos{
+        color:#ffffff;
+        font-weight:bold;
+        float:right;
+        display:block;
+        padding-right: 30px;
+}
+
+
+.fadein,
+.fadeout {
+  -webkit-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 1.5s;
+  -moz-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 1.5s;
+  -o-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 1.5s;
+  transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 1.5s;
+}
+
+.fadein.ng-hide-remove,
+.fadeout.ng-hide-add.ng-hide-add-active {
+  opacity: 0;
+  display: block !important;
+}
+
+.fadeout.ng-hide-add,
+.fadein.ng-hide-remove.ng-hide-remove-active {
+  opacity: 1;
+  display: block !important;
+}

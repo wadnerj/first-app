@@ -1,0 +1,71 @@
+angular.module('orderApp', ['ui.router'])
+.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
+  $locationProvider.html5Mode(false);
+
+  $urlRouterProvider.otherwise('/contact-info');
+
+  $stateProvider
+    .state('contact-info', {
+      url         : "/contact-info",
+      templateUrl : "tpls/contact-info.html",
+      controller  : function ($scope, $rootScope, alert ) {
+
+
+        $scope.forgotPassword = function(email) {
+          if(angular.isUndefined(email) || email == '') {
+            alert.warning('please enter an email address to remember.');
+          } else {
+            alert.notice('your password has been emailed to you.');
+            $http.post('someUrl')
+             .success(function(result) {
+             })
+             .error(function(result) {
+             });
+          }
+        }
+
+      }
+    })
+    .state('shipping-info', {
+      url         : "/shipping-info",
+      templateUrl : "tpls/shipping-info.html",
+      controller  : function ($scope, $rootScope, alert ) {
+        //console.log($scope);
+      }
+    })
+    .state('billing-info', {
+      url         : "/billing-info",
+      templateUrl : "tpls/billing-info.html",
+      controller  : function ($scope, $rootScope, alert ) {
+        //console.log($scope);
+        $scope.order = {
+          start_date  : "0000-00-00",
+          subtotal    : 1000,
+          taxtotal    : 12.99,
+          total       : 1000+12.99,
+          id          : 666
+        };
+        $scope.order.step = 3;
+      }
+    })
+    .state('thank-you', {
+      url         : "/thank-you",
+      templateUrl : "tpls/thank-you.html",
+      controller  : function ($scope, $rootScope, alert, step ) {
+        //console.log($scope);
+        step.current();
+        $scope.order = {
+          start_date  : "0000-00-00",
+          total       : 9999,
+          id          : 666
+        };
+        $scope.order.step = 4;
+      }
+    });
+})
+.run(['$rootScope', '$state', '$stateParams', function($rootScope,$state,$stateParams) {
+  $rootScope.$state = $state;
+  $rootScope.$stateParams = $stateParams;
+
+}]);
+
