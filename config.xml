@@ -4,10 +4,10 @@
         id        = "com.fracturedvisionmedia.test"
         version   = "1.0.0">
 		
-	<preference name="phonegap-version" value="3.5.0" />
+	<preference name="phonegap-version" value="3.6.3" />
 	<preference name="orientation" value="portrait" />
 	
-    <name>Hello World</name>
+    <name>First Game</name>
     <description>test app</description>
     <author href="http://fracturedvisionmedia.com" email="info@fracturedvisionmedia.com">Fractured Vision Media, LLC</author>
 	<preference name="permissions" value="none" />
