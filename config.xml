@@ -1,12 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <widget xmlns = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
+	xmlns:android   = "http://schemas.android.com/apk/res/android"
         id        = "com.fracturedvisionmedia.test"
+	 versionCode = "10"
         version   = "1.0.0">
 		
 	<preference name="phonegap-version" value="3.6.3" />
 	<preference name="orientation" value="portrait" />
-	
+	<preference name="android-minSdkVersion" value="10" />
+	<preference name="android-maxSdkVersion" value="15" />
+	<preference name="android-installLocation" value="auto" />
+	<gap:platform name="ios" />
+	<gap:platform name="android" />
+	<gap:platform name="winphone" />
     <name>First Game</name>
     <description>Hi ERIC</description>
     <author href="http://fracturedvisionmedia.com" email="info@fracturedvisionmedia.com">Fractured Vision Media, LLC</author>
