@@ -17,7 +17,7 @@ gameApp.config(function($routeProvider) {
 			
 	.when('/', {
 
-	  templateUrl : '../app/tpls/splash.html',
+	  templateUrl : '../first-app/tpls/splash.html',
 
 	  controller  : 'splashController'
 			
@@ -28,7 +28,7 @@ gameApp.config(function($routeProvider) {
 			
 	.when('/home', {
 
-	  templateUrl : '../app/tpls/home.html',
+	  templateUrl : '../first-app/tpls/home.html',
 
 	  controller  : 'mainController'
 			
@@ -39,7 +39,7 @@ gameApp.config(function($routeProvider) {
 			
         .when('/stage', {
 
-	  templateUrl : '../app/tpls/stage.html',
+	  templateUrl : '../first-app/tpls/stage.html',
 
 	  controller  : 'stageController'
 
