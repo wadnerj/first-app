@@ -146,6 +146,10 @@ width: 100%!important;
 width:100%;
 height:100%;
 position:absolute;
+/*background-image:url(http://fc03.deviantart.net/fs71/i/2012/351/2/4/cloudy_sky_background_by_goblinengineer-d5obh26.png);
+background-position: 0px 0px;
+background-repeat: repeat-xy;
+*/
 background-image: url(http://sandbox.yoyogames.com/extras/image/name/san2/921/425921/original/Space_Background_bigger.gif);
 background-position: 0px 0px;
 background-repeat: repeat-xy;
@@ -182,20 +186,62 @@ animation: animatedBackground 3s linear infinite;
 }
 
 #player{
+border:solid 1px #000000;
 width:50px;
 height: 72px;
 background: url(http://s.cdpn.io/79/sprite-steps.png) 0 0;
 position: absolute;
- -webkit-animation: play .8s steps(10) infinite;
+/* -webkit-animation: play .8s steps(10) infinite;
        -moz-animation: play .8s steps(10) infinite;
         -ms-animation: play .8s steps(10) infinite;
          -o-animation: play .8s steps(10) infinite;
             animation: play .8s steps(10) infinite;
-}
+*/}
 
 #player.main{
-bottom: 5%;
+bottom:3%;
 left:48%;
+}
+
+.spear-left{
+position: absolute;
+left: 0;
+top:0%;
+height: 15px;
+width:100px;
+border:solid 1px green;
+}
+
+.spear-right{
+position: absolute;
+right: 0;
+top:0%;
+height: 15px;
+width:100px;
+border:solid 1px green;
+}
+
+.move{
+    -webkit-animation: move 1s; /* Chrome, Safari, Opera */
+    animation: move 1s;
+}
+
+/* Chrome, Safari, Opera */
+@-webkit-keyframes move {
+    0%   {left:0px;}
+    25%  {left:95%;}
+    50%  {left:95%;}
+    75%  {left:0px;}
+    100% {left:0px;}
+}
+
+/* Standard syntax */
+@keyframes move {
+    0%   {background:red; left:0px; top:0px;}
+    25%  {background:yellow; left:200px; top:0px;}
+    50%  {background:blue; left:200px; top:0px;}
+    75%  {background:green; left:0px; top:0px;}
+    100% {background:red; left:0px; top:0px;}
 }
 
 .fall{
