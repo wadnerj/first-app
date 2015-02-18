@@ -185,6 +185,7 @@ animation: animatedBackground 3s linear infinite;
      to { background-position: -500px; }
 }
 
+
 #player{
 border:solid 1px #000000;
 width:50px;
@@ -201,8 +202,18 @@ position: absolute;
 #player.main{
 bottom:10%;
 left:48%;
+z-index:1;
 }
 
+
+.projectile{
+	height: 15px;
+	width: 7px;
+	position: absolute;
+	border: 1px solid green;
+	bottom:0%;
+	z-index:0;
+}
 .spear-left{
 position: absolute;
 left: 0;

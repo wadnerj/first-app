@@ -99,47 +99,88 @@ gameApp.controller('exitController', function($scope) {
 gameApp.controller('stageController', function($scope,$timeout, $interval) {
 
 $scope.sliding = function(){
-$( ".spear-left" ).animate({ top: "0%" }, 3000);
-$( ".spear-right" ).animate({ top: "0%" }, 2000);
+///$( ".spear-left" ).animate({ top: "0%" }, 3000);
+///$( ".spear-right" ).animate({ top: "0%" }, 2000);
+///$( "#player.main" ).animate({ bottom: "80%" }, 1000);
 //$( "#player.main" )
 // .animate({ left: "90%" }, 1000 )
 // .animate({ left: "0%" }, 1000 );
-$( ".spear-left" ).animate({ top: "100%" }, 3000 );
-$( ".spear-right" ).animate({ top: "100%" }, 3000);
+///$( ".spear-left" ).animate({ top: "100%" }, 3000 );
+///$( ".spear-right" ).animate({ top: "100%" }, 3000);
+///$( "#player.main" ).animate({ bottom: "10%" }, 1000);
 //$( "#player.main" ).animate({ bottom: '+=10' },100)
+$( "#player.main" )
+                .animate({ left: '8%' },3000)
+                .animate({ left: '93%' },3000);
+
+$( ".projectile").animate({ bottom: '100%' },500)
 }
 
+function randString(n)
+{
+    if(!n)
+    {
+        n = 5;
+    }
 
+    var text = '';
+    var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+
+    for(var i=0; i < n; i++)
+    {
+        text += possible.charAt(Math.floor(Math.random() * possible.length));
+    }
+
+    return text;
+}
+//SCREEN SIDES
 var screenSide= screen.width/2;
 var playerStation = Math.round(screen.width * 0.48);
 $( "#player.main" ).css({left: playerStation +'px'});
+
+
+//TRY PLAYER SWIPE
 //start();RAIN DOWN
 document.ontouchmove = function(e) {e.preventDefault()}; //mobile bounce
 $(document).on('vclick', '#animate-area', function(event){
 //  $("#player.main").css({ left: event.clientX });
 //        $("#player.main").css({ top: event.clientY });
 
+var pClass = randString(4);
+
+var $div = $("<div>", {id: "bullet", class: "projectile " + pClass});// make class random
+
+$("#animate-area").append($div);
+
+$(".projectile").css({ left: ((parseInt($( "#player.main" ).css('width'))/2) + (parseInt($( "#player.main" ).css('left'))))+'px'});			
+//,bottom: (parseInt($( "#player.main" ).css('bottom')) +  (parseInt($( "#player.main" ).css('height'))))+ 'px'
+$( "."+pClass ).animate({ bottom: '100%' },500)
 //console.log(screenSide);
 //console.log(event.clientX);
 //console.log(event.clientY);
-console.log($( "#player.main" ).css('left'));
-console.log(playerStation);
+//console.log($( "#player.main" ).css('left'));
+//console.log(playerStation);
 
 
-if ($( "#player.main" ).css('left') === playerStation+'px'){
+
+/*if ($( "#player.main" ).css('left') === playerStation+'px'){
 	if (event.clientX < screenSide){
 		$( "#player.main" )
 		.animate({ left: '8%' },1000)
-		.animate({ left: playerStation+'px' },1000)
+		.animate({ left: playerStation+'px' },1000);
 		return
 	}
 	else if (event.clientX > screenSide){
 		$( "#player.main" )
 		.animate({ left: '96%' },1000)
-		.animate({ left: playerStation+'px' },1000)
+		.animate({ left: '8%' },1000)
 		return
 	}
-}
+}*/
+
+
+//if pClass bottom height = 100% then remove
+
 });
 
 
