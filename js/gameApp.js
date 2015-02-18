@@ -109,10 +109,6 @@ $scope.sliding = function(){
 ///$( ".spear-right" ).animate({ top: "100%" }, 3000);
 ///$( "#player.main" ).animate({ bottom: "10%" }, 1000);
 //$( "#player.main" ).animate({ bottom: '+=10' },100)
-$( "#player.main" )
-                .animate({ left: '8%' },3000)
-                .animate({ left: '93%' },3000);
-
 $( ".projectile").animate({ bottom: '100%' },500)
 }
 
@@ -133,16 +129,46 @@ function randString(n)
 
     return text;
 }
+
+
+//$(document).on("pageinit", function(event){
+
 //SCREEN SIDES
 var screenSide= screen.width/2;
 var playerStation = Math.round(screen.width * 0.48);
 $( "#player.main" ).css({left: playerStation +'px'});
 
 
+var edgeLeft = screen.width - (screen.width - parseInt($( "#wall-left" ).css('width')));
+var edgeRight = screen.width - parseInt($( "#wall-right" ).css('width'));
+var borderWidth = parseInt($( "#wall-left" ).css('width'));
+var playerMove = (screen.width/3)+ borderWidth;
 //TRY PLAYER SWIPE
+// $( "#animate-area" ).on( "swipeleft", swipeleftHandler );
+// $( "#animate-area" ).on( "swiperight", swiperightHandler );
+//$(document).on('swipeleft', '#animate-area', swipeleftHandler);
+//function swipeleftHandler( event ){
+//$(document).on('swipeleft', '#animate-area', function() {
+$("#animate-area").touchwipe({
+	wipeLeft: 
+	function() {
+		if (parseInt($( "#player.main" ).css('left')) >=  playerStation){
+			$( "#player.main" ).animate({ left: '-='+playerMove }, 1000);
+		}else{return};
+	},
+	wipeRight:
+	function() {
+		if (parseInt($( "#player.main" ).css('left')) <= playerStation){
+			$( "#player.main" ).animate({ left: '+='+playerMove },1000);
+		}else{return};
+	},
+	preventDefaultEvents: true		
+});
+
+
 //start();RAIN DOWN
 document.ontouchmove = function(e) {e.preventDefault()}; //mobile bounce
-$(document).on('vclick', '#animate-area', function(event){
+$(document).on('vmousedown', '#animate-area', function(event){
 //  $("#player.main").css({ left: event.clientX });
 //        $("#player.main").css({ top: event.clientY });
 
@@ -183,9 +209,7 @@ $( "."+pClass ).animate({ bottom: '100%' },500)
 
 });
 
-
-$scope.obstacles = Math.floor((Math.random() * 10) + 1);
-console.log();
+//});//end document init
 
 /*$(document).on("swipe", "body", function(event,e){
 var offset = $( this ).offset();

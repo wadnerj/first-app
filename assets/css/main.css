@@ -211,7 +211,7 @@ z-index:1;
 	width: 7px;
 	position: absolute;
 	border: 1px solid green;
-	bottom:0%;
+	bottom:11%;
 	z-index:0;
 }
 .spear-left{
@@ -307,3 +307,21 @@ width:10px!important;
   opacity: 1;
   display: block !important;
 }
+
+
+#wall-left, #wall-right{
+position: absolute;
+width: 5%;
+border: solid 1px green;
+background: greenyellow;
+height: 100%;
+}
+
+#wall-left{
+left: 0%;
+}
+
+#wall-right{
+right:0%;
+}
+
