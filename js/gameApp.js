@@ -111,7 +111,7 @@ $( ".spear-right" ).animate({ top: "100%" }, 3000);
 
 
 var screenSide= screen.width/2;
-var playerStation = screen.width * 0.48;
+var playerStation = Math.round(screen.width * 0.48);
 $( "#player.main" ).css({left: playerStation +'px'});
 //start();RAIN DOWN
 document.ontouchmove = function(e) {e.preventDefault()}; //mobile bounce
@@ -122,11 +122,11 @@ $(document).on('vclick', '#animate-area', function(event){
 //console.log(screenSide);
 //console.log(event.clientX);
 //console.log(event.clientY);
-//console.log($( "#player.main" ).css('left'));
-//console.log(playerStation);
+console.log($( "#player.main" ).css('left'));
+console.log(playerStation);
 
 
-if ($( "#player.main" ).css('left') == playerStation+'px'){
+if ($( "#player.main" ).css('left') === playerStation+'px'){
 	if (event.clientX < screenSide){
 		$( "#player.main" )
 		.animate({ left: '8%' },1000)
