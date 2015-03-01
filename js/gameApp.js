@@ -17,7 +17,7 @@ gameApp.config(function($routeProvider) {
 			
 	.when('/', {
 
-	  templateUrl : '../app/tpls/splash.html',
+	  templateUrl : 'tpls/splash.html',
 
 	  controller  : 'splashController'
 			
@@ -28,7 +28,7 @@ gameApp.config(function($routeProvider) {
 			
 	.when('/home', {
 
-	  templateUrl : '../app/tpls/home.html',
+	  templateUrl : 'tpls/home.html',
 
 	  controller  : 'mainController'
 			
@@ -39,7 +39,7 @@ gameApp.config(function($routeProvider) {
 			
         .when('/stage', {
 
-	  templateUrl : '../app/tpls/stage.html',
+	  templateUrl : 'tpls/stage.html',
 
 	  controller  : 'stageController'
 
@@ -64,38 +64,25 @@ gameApp.config(function($routeProvider) {
 
 // End Splash Controller
 gameApp.controller('splashController', function($scope, $location, $timeout) {
-
-
 $scope.endSplash = function(){ 
- $location.path('/home'); // path not hash
+ $location.path('home'); // path not hash
  }; 
-
 $scope.fadeO= function(){
 $('.splash').fadeOut();
 }
-
-
 $timeout($scope.fadeO, 6500);
 $timeout($scope.endSplash, 7000);         	
-
 });
 // End Splash Controller
 
 
 // Start main menu controller
 gameApp.controller('mainController', function($scope, $timeout) {
-
 $scope.ready = { active: false };
-$scope.fadeIn = function () {
-      
+fadeIn = function () {
     $scope.ready.active = !$scope.ready.active;
-   
  };
-		
-
-$timeout($scope.fadeIn, 500);
-
-
+$timeout(fadeIn, 500);
 });
 
 	
@@ -109,18 +96,122 @@ gameApp.controller('exitController', function($scope) {
 	});
 
 
-gameApp.controller('stageController', function($scope) {
+gameApp.controller('stageController', function($scope,$timeout, $interval) {
 
-		$( document ).ready(function() {
+$scope.sliding = function(){
+///$( ".spear-left" ).animate({ top: "0%" }, 3000);
+///$( ".spear-right" ).animate({ top: "0%" }, 2000);
+///$( "#player.main" ).animate({ bottom: "80%" }, 1000);
+//$( "#player.main" )
+// .animate({ left: "90%" }, 1000 )
+// .animate({ left: "0%" }, 1000 );
+///$( ".spear-left" ).animate({ top: "100%" }, 3000 );
+///$( ".spear-right" ).animate({ top: "100%" }, 3000);
+///$( "#player.main" ).animate({ bottom: "10%" }, 1000);
+//$( "#player.main" ).animate({ bottom: '+=10' },100)
+$( ".projectile").animate({ bottom: '100%' },500)
+}
 
-start();
-document.ontouchmove = function(e) {e.preventDefault()}; //mobile bounce
-$(document).on('vclick', '#animate-area', function(event){
-  $("#player.main").css({ left: event.clientX });
-        $("#player.main").css({ top: event.clientY });
+function randString(n)
+{
+    if(!n)
+    {
+        n = 5;
+    }
+
+    var text = '';
+    var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+
+    for(var i=0; i < n; i++)
+    {
+        text += possible.charAt(Math.floor(Math.random() * possible.length));
+    }
+
+    return text;
+}
+
+
+//$(document).on("pageinit", function(event){
+
+//SCREEN SIDES
+var screenSide= screen.width/2;
+var playerStation = Math.round(screen.width * 0.48);
+$( "#player.main" ).css({left: playerStation +'px'});
+
+
+var edgeLeft = screen.width - (screen.width - parseInt($( "#wall-left" ).css('width')));
+var edgeRight = screen.width - parseInt($( "#wall-right" ).css('width'));
+var borderWidth = parseInt($( "#wall-left" ).css('width'));
+var playerMove = (screen.width/3)+ borderWidth;
+//TRY PLAYER SWIPE
+// $( "#animate-area" ).on( "swipeleft", swipeleftHandler );
+// $( "#animate-area" ).on( "swiperight", swiperightHandler );
+//$(document).on('swipeleft', '#animate-area', swipeleftHandler);
+//function swipeleftHandler( event ){
+//$(document).on('swipeleft', '#animate-area', function() {
+$("#animate-area").touchwipe({
+	wipeLeft: 
+	function() {
+		if (parseInt($( "#player.main" ).css('left')) >=  playerStation){
+			$( "#player.main" ).animate({ left: '-='+playerMove }, 1000);
+		}else{return};
+	},
+	wipeRight:
+	function() {
+		if (parseInt($( "#player.main" ).css('left')) <= playerStation){
+			$( "#player.main" ).animate({ left: '+='+playerMove },1000);
+		}else{return};
+	},
+	preventDefaultEvents: true		
 });
 
-$(document).on("swipe", "body", function(event,e){
+
+//start();RAIN DOWN
+document.ontouchmove = function(e) {e.preventDefault()}; //mobile bounce
+$(document).on('vmousedown', '#animate-area', function(event){
+//  $("#player.main").css({ left: event.clientX });
+//        $("#player.main").css({ top: event.clientY });
+
+var pClass = randString(4);
+
+var $div = $("<div>", {id: "bullet", class: "projectile " + pClass});// make class random
+
+$("#animate-area").append($div);
+
+$(".projectile").css({ left: ((parseInt($( "#player.main" ).css('width'))/2) + (parseInt($( "#player.main" ).css('left'))))+'px'});			
+//,bottom: (parseInt($( "#player.main" ).css('bottom')) +  (parseInt($( "#player.main" ).css('height'))))+ 'px'
+$( "."+pClass ).animate({ bottom: '100%' },500)
+//console.log(screenSide);
+//console.log(event.clientX);
+//console.log(event.clientY);
+//console.log($( "#player.main" ).css('left'));
+//console.log(playerStation);
+
+
+
+/*if ($( "#player.main" ).css('left') === playerStation+'px'){
+	if (event.clientX < screenSide){
+		$( "#player.main" )
+		.animate({ left: '8%' },1000)
+		.animate({ left: playerStation+'px' },1000);
+		return
+	}
+	else if (event.clientX > screenSide){
+		$( "#player.main" )
+		.animate({ left: '96%' },1000)
+		.animate({ left: '8%' },1000)
+		return
+	}
+}*/
+
+
+//if pClass bottom height = 100% then remove
+
+});
+
+//});//end document init
+
+/*$(document).on("swipe", "body", function(event,e){
 var offset = $( this ).offset();
 var touch = event.changedTouches[0];
 console.log("y " + touch.screenX);
@@ -128,7 +219,7 @@ alert('swipe');
 $("#player.main").css({ left: event.clientX });
  $("#player.main").css({ top: event.clientY });
 });
-
+*/
 
 
 function gameTimer() {
@@ -168,11 +259,11 @@ function gameTimer() {
 }
 
 
+//$( '#animate-area' ).click(function(event) {
 
-/*$( '#animate-area' ).click(function(event) {
-console.log("click");
-console.log(event.clientX);
-*/
+//console.log(event.clientX);
+//$( "#player.main" ).css({ bottom: '+=20' })
+//})
 /*      if (parseInt($('#player').css('top')) <= 200 && pos_y <= 200){
                 console.log('1');
                 console.log($('#player').css('top'));
@@ -208,25 +299,27 @@ console.log(event.clientX);
 var fall=0;
 var each= "";
 var score =0;
-$( "#animate-area" ).mousemove(function( event ) {
+//$( "#animate-area" ).mousemove(function( event ) {
   /*var pageCoords = "( " + event.pageX + ", " + event.pageY + " )";
 var clientCoords = "( " + event.clientX + ", " + event.clientY + " )";
 */
-   $("#player.main").css({ left: event.clientX });
-  $("#player.main").css({ top: event.clientY });
+//   $("#player.main").css({ left: event.clientX });
+ // $("#player.main").css({ top: event.clientY });
  /* $( "span:first" ).text( "( event.pageX, event.pageY ) : " + pageCoords );
   $( "span:last" ).text( "( event.clientX, event.clientY ) : " + clientCoords );
 */
-  if(collision($('#player.main'), $("#"+id))== true){
-                score +=1
-                $(".fall."+id).remove();
+/* if(collision($('#player.main'), $(".fall"))){
+	  	score +=1;
+                //$(".fall."+id).remove();
+		var id= ($('.fall').attr('id'));
+		$("#" + id).remove();
                 $("#score").html('Score: '+ score)
                 console.log('true')
         } else{
                 console.log('false')
         }
 });
-
+*/
 
 
 //var t= Math.floor((Math.random() * 10000) + 1000);
@@ -320,7 +413,8 @@ function collision($div1, $div2) {
       return true;
     }
 
-});
+
+$interval($scope.sliding,1000);
 });
 
 	
