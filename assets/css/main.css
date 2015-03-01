@@ -159,51 +159,50 @@ animation: animatedBackground 3s linear infinite;
 -webkit-animation: animatedBackground 3s linear infinite;
 }
 
-
-@-webkit-keyframes play {
-   from { background-position:    0px; }
-     to { background-position: -500px; }
-}
-
-@-moz-keyframes play {
-   from { background-position:    0px; }
-     to { background-position: -500px; }
-}
-
-@-ms-keyframes play {
-   from { background-position:    0px; }
-     to { background-position: -500px; }
-}
-
-@-o-keyframes play {
-   from { background-position:    0px; }
-     to { background-position: -500px; }
-}
-
-@keyframes play {
-   from { background-position:    0px; }
-     to { background-position: -500px; }
-}
-
-
 #player{
-border:solid 1px #000000;
-width:50px;
-height: 72px;
-background: url(http://s.cdpn.io/79/sprite-steps.png) 0 0;
+
+width:65px;
+height: 77px;
+background: url(/github/first-app/assets/img/sprite3.gif) 0 0;
 position: absolute;
-/* -webkit-animation: play .8s steps(10) infinite;
-       -moz-animation: play .8s steps(10) infinite;
-        -ms-animation: play .8s steps(10) infinite;
-         -o-animation: play .8s steps(10) infinite;
-            animation: play .8s steps(10) infinite;
-*/}
+-webkit-animation: play 17s steps(11) infinite;
+       -moz-animation: play 2s steps(9) infinite;
+        -ms-animation: play 2s steps(9) infinite;
+         -o-animation: play 2s steps(9) infinite;
+            animation: play 2s steps(9) infinite;
+}
 
 #player.main{
 bottom:10%;
 left:48%;
 z-index:1;
 }
+@-webkit-keyframes play {
+   from { background-position:    0px; }
+     to { background-position: -800px; }
+}
+
+@-moz-keyframes play {
+   from { background-position:    0px; }
+     to { background-position: -800px; }
+}
+
+@-ms-keyframes play {
+   from { background-position:    0px; }
+     to { background-position: -800px; }
+}
+
+@-o-keyframes play {
+   from { background-position:    0px; }
+     to { background-position: -800px; }
+}
+
+@keyframes play {
+   from { background-position:    0px; }
+     to { background-position: -800px; }
+}
+
+
 
 
 .projectile{
