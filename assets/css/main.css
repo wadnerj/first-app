@@ -161,16 +161,16 @@ animation: animatedBackground 3s linear infinite;
 
 #player{
 
-width:65px;
-height: 77px;
-background: url(/github/first-app/assets/img/sprite3.gif) 0 0;
+width:191px;
+height: 246px;
+background: url(/github/first-app/assets/img/shuttle.gif) 0 0;
 position: absolute;
--webkit-animation: play 17s steps(11) infinite;
+/*-webkit-animation: play 17s steps(11) infinite;
        -moz-animation: play 2s steps(9) infinite;
         -ms-animation: play 2s steps(9) infinite;
          -o-animation: play 2s steps(9) infinite;
             animation: play 2s steps(9) infinite;
-}
+*/}
 
 #player.main{
 bottom:10%;
